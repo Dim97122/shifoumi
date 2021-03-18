@@ -41,52 +41,12 @@ RSpec.describe GamesController, type: :controller do
   # GamesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-
-    it "returns a success response" do
-      get :index, params: {}, session: valid_session
-      expect(response).to be_successful
-    end
-
-  end
-
-  describe "GET #show" do
-
-    it "returns a success response" do
-      game = FactoryBot.create(:game)
-      get :show, params: {id: game.to_param}, session: valid_session
-      expect(response).to be_successful
-    end
-
-  end
-
-  describe "POST #create" do
-
-    context "with valid params" do
-
-      it "creates a new Game" do
-        expect {
-          post :create, params: { game: FactoryBot.attributes_for(:game) }, session: valid_session
-        }.to change(Game, :count).by(1)
-      end
-
-      it "renders a JSON response with the new game" do
-        post :create, params: { game: FactoryBot.attributes_for(:game) }, session: valid_session
-        expect(response).to have_http_status(:created)
-        expect(response.content_type).to eq('application/json; charset=utf-8')
-        expect(response.location).to eq(game_url(Game.last))
-      end
-
-    end
-
-    context "with invalid params" do
-
-      it "renders a JSON response with errors for the new game" do
-        post :create, params: { game: FactoryBot.attributes_for(:move) }, session: valid_session
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json; charset=utf-8')
-      end
-
-    end
-  end
+  # describe "GET #index" do
+  #
+  #   it "returns a success response" do
+  #     get :index, params: {}, as: :json
+  #     expect(response).to be_successful
+  #   end
+  #
+  # end
 end
