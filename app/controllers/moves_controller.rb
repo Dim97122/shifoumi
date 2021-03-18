@@ -18,7 +18,7 @@ class MovesController < ApplicationController
     @move = Move.new(move_params)
 
     if @move.save
-      render json: @move, status: :created, location: @move
+      render json: @move, status: :created
     else
       render json: @move.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class MovesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def move_params
-      params.require(:move).permit(:title, :game_id, :player_id)
+      params.require(:move).permit(:title, :player_id, :game_id)
     end
 end
